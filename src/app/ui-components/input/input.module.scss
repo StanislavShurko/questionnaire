@@ -1,0 +1,24 @@
+@import "@styles/variables.scss";
+
+.input-container {
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: $space-s $space-m;
+    border: $border-size-xs solid $border-default-color;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    transition: border 0.2s ease;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shadow-input;
+    }
+
+    &::placeholder {
+      color: $placeholder-color;
+    }
+  }
+}

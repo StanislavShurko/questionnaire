@@ -1,22 +1,14 @@
 "use client";
 import React from "react";
-import styles from "./page.module.css";
+import QuestionModal from "./components/question-modal/questionModal";
+import Quiz from "./components/quiz/quiz";
 
 export default function Home() {
-  const [question, setQuestion] = React.useState("");
+  const [topic, setTopic] = React.useState<string | null>(null);
 
-  return (
-    <div className={styles.mainContainer}>
-      <div>Ask question</div>
-      <div>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Type here..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-        />
-      </div>
-    </div>
-  );
+  if (!topic) {
+    return <QuestionModal onSubmit={(t) => { setTopic(t); }} />;
+  }
+
+  return <Quiz topic={topic} onFinish={() => setTopic(null)} />;
 }
