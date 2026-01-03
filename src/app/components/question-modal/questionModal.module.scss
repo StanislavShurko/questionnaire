@@ -21,3 +21,36 @@
     text-align: center;
   }
 }
+
+.loading-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+  align-items: center;
+  justify-content: center;
+
+  .loading-spinner {
+    border: 8px solid $light-gray;
+    border-top: 8px solid $primary;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .loading-text {
+    font-size: $font-size-l;
+    color: $text-color;
+  }
+}

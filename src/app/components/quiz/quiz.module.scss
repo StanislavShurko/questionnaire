@@ -34,3 +34,45 @@
     }
   }
 }
+
+// Summary styles
+.summary-list {
+  margin: $space-m 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.summary-score {
+  width: 100%;
+  text-align: center;
+  font-size: $font-size-l;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-xs $space-s;
+  border-bottom: 1px solid $border-default-color;
+  font-size: $font-size-m;
+}
+
+.summary-question {
+  flex: 1;
+  color: $text-color;
+}
+
+.correct {
+  color: $success;
+  font-weight: bold;
+  margin-left: $space-s;
+}
+
+.incorrect {
+  color: $danger;
+  font-weight: bold;
+  margin-left: $space-s;
+}

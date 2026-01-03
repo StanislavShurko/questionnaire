@@ -1,18 +1,24 @@
-'use client';
 import React from "react";
 import styles from "./questionModal.module.scss";
 import Input from "@/app/ui-components/input/input";
 import Button from "@/app/ui-components/button/button";
+import { getQuestions } from "@/app/services/api";
+import { Question } from "@/app/data/questions";
 
 interface QuestionModalProps {
-  onSubmit: (topic: string) => void;
+  onSubmit: (topic: string, questions: Question[]) => void;
 }
 
 export default function QuestionModal({ onSubmit }: QuestionModalProps) {
-  const [question, setQuestion] = React.useState("");
+  const [topic, setTopic] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
-  const generateQuestions = () => {
-    onSubmit(question)
+  const generateQuestions = async () => {
+    setLoading(true);
+    const questions = await getQuestions(topic);
+    console.log('asdhfkjlasdblvkajsbdvlkjasdv', questions);
+    setLoading(false);
+    onSubmit(topic, questions);
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -20,6 +26,15 @@ export default function QuestionModal({ onSubmit }: QuestionModalProps) {
       generateQuestions();
     }
   };
+
+  if (loading) {
+    return (
+      <div className={styles['loading-container']}>
+        <div className={styles['loading-spinner']}></div>
+        <div className={styles['loading-text']}>Loading...</div>
+      </div>
+    )
+  }
 
   return (
     <div className={styles['ask-container']}>
@@ -29,11 +44,11 @@ export default function QuestionModal({ onSubmit }: QuestionModalProps) {
       </div>
       <Input
         placeholder="e.g., Science, World History, JavaScript..."
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
+        value={topic}
+        onChange={(e) => setTopic(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <Button disabled={!question.length} onClick={generateQuestions}>Generate Quiz</Button>
+      <Button disabled={!topic.length} onClick={generateQuestions}>Generate Quiz</Button>
     </div>
   );
 }
