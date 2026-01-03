@@ -15,13 +15,24 @@ export default function QuestionModal({ onSubmit }: QuestionModalProps) {
     onSubmit(question)
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      generateQuestions();
+    }
+  };
+
   return (
     <div className={styles['ask-container']}>
       <div>
         <div className={styles['ask-title']}>AI Quiz Generator</div>
         <div className={styles['ask-sub-title']}>Enter any topic and get instant quiz questions powered by AI</div>
       </div>
-      <Input placeholder="e.g., Science, World History, JavaScript..." value={question} onChange={(e) => setQuestion(e.target.value)} />
+      <Input
+        placeholder="e.g., Science, World History, JavaScript..."
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
       <Button disabled={!question.length} onClick={generateQuestions}>Generate Quiz</Button>
     </div>
   );

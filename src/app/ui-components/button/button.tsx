@@ -2,8 +2,7 @@
 import React from 'react';
 import styles from './button.module.scss';
 
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { }
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
   return (
