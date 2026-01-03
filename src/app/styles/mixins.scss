@@ -1,0 +1,14 @@
+@import "./variables.scss";
+@import "./helper.scss";
+
+@mixin modal {
+  @include center-absolute;
+  @include flex-column;
+  align-items: center;
+  gap: $space-xl;
+
+  padding: $block-padding;
+  border: $border-size-xs solid $border-default-color;
+  border-radius: $border-radius-s;
+  box-shadow: $shadow-default;
+}
